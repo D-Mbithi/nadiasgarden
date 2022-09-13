@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Order
+{% endblock title %}
+
+
+{% block content %}
+    <div class="col-6 offset-3 border rounded p-3 d-grid">
+        <h2 class="h1 mb-4">Order Form</h2>
+        
+        <form action="{% url 'order' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Order Pizza" class="btn btn-outline-primary btn-lg">
+        </form>
+
+        <br>
+        <br>
+
+        <form action="{% url 'pizzas' %}" method="get" class="mt-5">
+            {{ multiform|crispy }}
+            <input type="submit" value="Get Pizzas" class="btn btn-outline-secondary btn-sm">
+        </form>
+    </div>
+{% endblock content %}
+    

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    Pizzas
+{% endblock title %}
+    
+
+{% block content %}
+<div class="col-8 border rounded p-3 d-grid justify-content-center mx-md-auto mt-5">
+    <h2 class="h1 mb-4">Order Multiple Pizzas</h2>
+    
+    <form action="{% url 'pizzas' %}" method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        {% for field in formset %}
+            <div class="input-group">
+                {{ field|crispy }}
+            </div>
+        {% endfor %}
+
+        <!-- {{ formset }} -->
+        <input type="submit" value="Order Pizzas" class="btn btn-outline-primary btn-lg">
+    </form>
+</div>
+{% endblock content %}
+    
